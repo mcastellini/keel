@@ -261,7 +261,7 @@ build_keel_image() {
 
   if [[ -z "${KEEL_E2E_PREBUILT_IMAGE:-}" ]]; then
     log "building Keel container from ${REPO_ROOT}/Dockerfile"
-    docker build --tag "${local_image}" --file "${REPO_ROOT}/Dockerfile" "${REPO_ROOT}"
+    docker build --provenance=false --tag "${local_image}" --file "${REPO_ROOT}/Dockerfile" "${REPO_ROOT}"
   else
     docker image inspect "${local_image}" >/dev/null || fail "prebuilt image not found: ${local_image}"
     log "using release-validated image ${local_image}"

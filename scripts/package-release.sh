@@ -87,7 +87,7 @@ sha256sum "${archive}" >"${archive}.sha256"
 
 if [[ "${KEEL_RELEASE_SKIP_IMAGE:-false}" != "true" ]]; then
   log "building release-equivalent image ${IMAGE}"
-  docker build --platform "${KEEL_RELEASE_PLATFORM:-linux/amd64}" \
+  docker build --platform "${KEEL_RELEASE_PLATFORM:-linux/amd64}" --provenance=false \
     --build-arg "VERSION=${APP_VERSION}" --build-arg "REVISION=${REVISION}" \
     --build-arg "BUILD_DATE=${BUILD_DATE}" --tag "${IMAGE}" \
     --file "${REPO_ROOT}/Dockerfile" "${REPO_ROOT}"
